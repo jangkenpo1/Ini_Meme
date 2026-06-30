@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Meme Camera</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- MediaPipe Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Video Feed (Hidden, used for processing) -->
+        <video class="input_video" style="display: none;"></video>
+        
+        <!-- Main UI -->
+        <div class="camera-wrapper">
+            <canvas class="output_canvas" width="640" height="480"></canvas>
+            
+            <!-- Overlay for Calibration Progress -->
+            <div id="calibration-overlay" class="overlay glass-panel">
+                <h2>Mira al frente / Wajah Neutral</h2>
+                <div class="progress-bar">
+                    <div id="calibration-progress" class="progress-fill"></div>
+                </div>
+                <p id="calibration-text">0%</p>
+            </div>
+            
+            <!-- HUD Info -->
+            <div id="hud-overlay" class="glass-panel" style="display: none;">
+                <h3 id="current-meme-text">neutral</h3>
+                <div id="hands-info"></div>
+            </div>
+        </div>
+
+        <!-- Meme Display Area -->
+        <div class="meme-wrapper glass-panel">
+            <h2>Meme Detectado</h2>
+            <div id="meme-display" class="meme-placeholder">
+                <img id="detected-meme" src="" alt="Meme" style="display: none;">
+                <p id="no-meme-text">Menunggu Gestur...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

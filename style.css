@@ -1,0 +1,167 @@
+:root {
+    --bg-dark: #121214;
+    --panel-bg: rgba(255, 255, 255, 0.05);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --accent: #10b981;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.camera-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    min-width: 320px;
+}
+
+.output_canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scaleX(-1); /* Mirror effect */
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+    z-index: 10;
+}
+
+.overlay h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.2s ease;
+}
+
+#hud-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem;
+    pointer-events: none;
+    z-index: 10;
+    min-width: 150px;
+}
+
+#current-meme-text {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+
+#hands-info p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    margin: 0.25rem 0;
+}
+
+.meme-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 320px;
+}
+
+.meme-wrapper h2 {
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    font-size: 1.5rem;
+}
+
+.meme-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#detected-meme {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+#no-meme-text {
+    color: #ef4444; /* red-500 */
+    font-weight: 500;
+}
